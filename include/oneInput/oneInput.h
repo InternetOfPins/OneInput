@@ -24,6 +24,22 @@
  *
  *   ISR(PCINT1_vect) { Enc::dispatch(); Btn::dispatch(); }
  *
+ * ESP32/ESP8266 — no user ISR; begin() calls attachInterrupt internally:
+ *
+ *   using EncHW = hapi::APIOf<oneInput::InputDef,
+ *     oneInput::Encoder,
+ *     oneInput::Esp32EncPins<34, 35>   // CLK=34, DT=35
+ *   >;
+ *   using BtnHW = hapi::APIOf<oneInput::InputDef,
+ *     oneInput::BtnCapture,
+ *     oneInput::Hold<800>,
+ *     oneInput::Click<300>,
+ *     oneInput::Debounce<20>,
+ *     oneInput::Esp32BtnPin<32>
+ *   >;
+ *   // No ISR needed — begin() wires attachInterrupt
+ *   InDef<oneMenu::EncIn<EncHW, 4>, oneMenu::BtnIn<BtnHW>, PCKbd> in;
+ *
  * Menu adapters (EncIn, BtnIn) live in OneMenu: oneMenu/menu/IO/IOP/encIn.h / btnIn.h
  */
 
@@ -37,4 +53,7 @@
 #ifdef __AVR__
   #include <oneInput/avr/avrBtnPin.h>
   #include <oneInput/avr/avrEncPins.h>
+#elif defined(ESP32) || defined(ESP8266)
+  #include <oneInput/esp32/esp32BtnPin.h>
+  #include <oneInput/esp32/esp32EncPins.h>
 #endif
