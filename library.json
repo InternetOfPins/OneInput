@@ -1,0 +1,28 @@
+{
+  "name": "OneInput",
+  "version": "0.1.0",
+  "description": "Composable physical input library for IOP (debounce, click, hold, encoder)",
+  "keywords": "input, button, encoder, debounce, click, hold, HAPI",
+  "build": {
+    "srcFilter": ["-<*>"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/InternetOfPins/OneInput.git"
+  },
+  "authors": [
+    {
+      "name": "Rui Azevedo",
+      "email": "ruihfazevedo@gmail.com",
+      "url": "https://github.com/neu-rah",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/InternetOfPins/OneInput",
+  "dependencies": {
+    "HAPI": ">=0.4.1"
+  },
+  "frameworks": "*",
+  "platforms": "*"
+}
