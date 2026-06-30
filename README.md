@@ -1,5 +1,7 @@
 # OneInput
 
+**HAPI Compatibility:** Works with new Check/Apply/ApplyPack API (2026-Q2)
+
 Composable physical input library for IOP — debounce, click, hold, and quadrature encoder, assembled as HAPI chains. Zero dynamic allocation, pure-static dispatch.
 
 Part of the [InternetOfPins](https://github.com/InternetOfPins) project family.
