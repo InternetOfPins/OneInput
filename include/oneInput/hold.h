@@ -7,7 +7,7 @@ namespace oneInput {
   // onHold() fires once (via available() poll) and suppresses the Click above it:
   //   Click::onRise() fires onClick() only if millis()-_t <= Click::MaxMs.
   //   Since HoldMs > MaxMs (by design), Click's window is already expired when Hold fires.
-  // Place ABOVE Click in the chain:  APIOf<InputDef, BtnIn, Hold<800>, Click<300>, ...>
+  // Place ABOVE Click in the chain:  InputDef<BtnIn, Hold<800>, Click<300>, ...>
   /// @brief hold detector: onFall held ≥ HoldMs → onHold() via available(); suppresses click naturally
   template<uint16_t HoldMs = 800>
   struct Hold {

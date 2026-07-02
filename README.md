@@ -31,13 +31,13 @@ The chain `begin()` wires all interrupts. After that, dispatching is driven by e
 #include <chips/avr/avrPort.h>
 
 // Encoder on PC0+PC1 (Arduino A0+A1), PCINT group 1
-using EncHW = hapi::APIOf<oneInput::InputDef,
+using EncHW = oneInput::InputDef<
   oneInput::Encoder,
   oneInput::avr::AvrEncPins</*group*/1, hw::avr::chip::PortC, /*bitA*/0, /*bitB*/1>
 >;
 
 // Button on PC2 (Arduino A2)
-using BtnHW = hapi::APIOf<oneInput::InputDef,
+using BtnHW = oneInput::InputDef<
   oneInput::BtnCapture,
   oneInput::Hold<800>,
   oneInput::Click<300>,
@@ -55,11 +55,11 @@ ISR(PCINT1_vect) { EncHW::dispatch(); BtnHW::dispatch(); }
 #include <oneInput/oneInput.h>
 
 // No user ISR — begin() calls attachInterrupt internally
-using EncHW = hapi::APIOf<oneInput::InputDef,
+using EncHW = oneInput::InputDef<
   oneInput::Encoder,
   oneInput::Esp32EncPins<32, 33>   // CLK=32, DT=33
 >;
-using BtnHW = hapi::APIOf<oneInput::InputDef,
+using BtnHW = oneInput::InputDef<
   oneInput::BtnCapture,
   oneInput::Hold<800>,
   oneInput::Click<300>,

@@ -4,17 +4,18 @@
  * @file oneInput.h
  * @brief OneInput — composable physical input library for IOP.
  *
- * Components assemble via hapi::APIOf — outermost (menu adapter) to innermost (ISR attachment):
+ * Components assemble via oneInput::InputDef<...> (= hapi::APIOf<InputAPI,...>) — outermost
+ * (menu adapter) to innermost (ISR attachment):
  *
  *   // Encoder on PC0+PC1, 4 steps/detent → CKE Up/Down
- *   using Enc = hapi::APIOf<oneInput::InputDef,
+ *   using Enc = oneInput::InputDef<
  *     oneMenu::EncIn<4>,
  *     oneInput::Encoder,
  *     oneInput::avr::AvrEncPins<1, chip::PortC, 0, 1>
  *   >;
  *
  *   // Button on PC2, click→Enter, hold→Esc
- *   using Btn = hapi::APIOf<oneInput::InputDef,
+ *   using Btn = oneInput::InputDef<
  *     oneMenu::BtnIn<>,
  *     oneInput::Hold<800>,
  *     oneInput::Click<300>,
@@ -26,11 +27,11 @@
  *
  * ESP32/ESP8266 — no user ISR; begin() calls attachInterrupt internally:
  *
- *   using EncHW = hapi::APIOf<oneInput::InputDef,
+ *   using EncHW = oneInput::InputDef<
  *     oneInput::Encoder,
  *     oneInput::Esp32EncPins<34, 35>   // CLK=34, DT=35
  *   >;
- *   using BtnHW = hapi::APIOf<oneInput::InputDef,
+ *   using BtnHW = oneInput::InputDef<
  *     oneInput::BtnCapture,
  *     oneInput::Hold<800>,
  *     oneInput::Click<300>,
