@@ -85,11 +85,6 @@ InDef<Enc, Btn, SerialIn, PCKbd> in;
 
 `Steps` is the number of quadrature transitions per physical detent — 4 for most encoders, 2 for half-step types.
 
-## Dependencies
-
-- [HAPI](https://github.com/InternetOfPins/HAPI)
-- [OneChip](https://github.com/InternetOfPins/OneChip) — for AVR port types (`AvrEncPins`, `AvrBtnPin`)
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
