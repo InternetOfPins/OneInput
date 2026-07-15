@@ -54,6 +54,7 @@
  * Menu adapters (EncIn, BtnIn, JoyIn) live in OneMenu: oneMenu/menu/IO/IOP/encIn.h / btnIn.h / joyIn.h
  */
 
+#include <oneInput/inputEvent.h>
 #include <oneInput/inputDef.h>
 #include <oneInput/debounce.h>
 #include <oneInput/click.h>
