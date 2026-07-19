@@ -50,4 +50,24 @@ namespace oneInput {
     };
   };
 
+  // Wraps a Joystick-shaped W's already-filtered dx()/dy() (deadzone+repeat ticks, -1/0/+1),
+  // negating either axis — the same "wrap the already-computed semantic output" placement as
+  // oneData::InvDir wraps Range's up()/down(), rather than inverting the raw ADC read (which
+  // would need Joystick's own Center, not otherwise visible here). Physical mounting/wiring
+  // commonly swaps which direction reads positive; InvX/InvY let a sketch correct that without
+  // touching Joystick's own Center/Deadzone/RepeatMs tuning.
+  /// @brief inverts a Joystick-shaped W's dx()/dy() sign per-axis (mount/wiring correction)
+  template<typename W, bool InvX = false, bool InvY = false>
+  struct InvAxis {
+    template<typename O>
+    struct Part : W::template Part<O> {
+      using Base = typename W::template Part<O>;
+      using Base::Base;
+      static int8_t dx() { int8_t v = Base::dx(); return InvX ? int8_t(-v) : v; }
+      static int8_t dy() { int8_t v = Base::dy(); return InvY ? int8_t(-v) : v; }
+      static void consumeX(int8_t n) { Base::consumeX(InvX ? int8_t(-n) : n); }
+      static void consumeY(int8_t n) { Base::consumeY(InvY ? int8_t(-n) : n); }
+    };
+  };
+
 } // oneInput
