@@ -16,9 +16,7 @@ namespace oneInput {
     static bool available()          { return false; }
   };
 
-  /// @brief compose a hardware/filter chain over InputAPI — e.g.
-  /// InputDef<Encoder, avr::AvrEncPins<1,chip::PortC,0,1>> instead of
-  /// hapi::APIOf<InputAPI, Encoder, avr::AvrEncPins<1,chip::PortC,0,1>>
+  /// @brief composes a hardware/filter chain over InputAPI.
   template<typename... OO>
   using InputDef = hapi::APIOf<InputAPI, OO...>;
 
