@@ -31,10 +31,10 @@ namespace oneInput {
         O::onEdge(currAB);
       }
 
-      static int8_t delta()         { return _delta; }
+      [[nodiscard]] static int8_t delta()         { return _delta; }
       static void   consume(int8_t n) { _delta -= n; }
 
-      static bool available() { return O::available(); }
+      [[nodiscard]] static bool available() { return O::available(); }
     };
   };
 

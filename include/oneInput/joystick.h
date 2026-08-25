@@ -42,9 +42,9 @@ namespace oneInput {
         _dirY = dirY;
       }
 
-      static bool available() { poll(); return _dx != 0 || _dy != 0 || O::available(); }
-      static int8_t dx() { return _dx; }
-      static int8_t dy() { return _dy; }
+      [[nodiscard]] static bool available() { poll(); return _dx != 0 || _dy != 0 || O::available(); }
+      [[nodiscard]] static int8_t dx() { return _dx; }
+      [[nodiscard]] static int8_t dy() { return _dy; }
       static void consumeX(int8_t n) { _dx -= n; }
       static void consumeY(int8_t n) { _dy -= n; }
     };
@@ -63,8 +63,8 @@ namespace oneInput {
     struct Part : W::template Part<O> {
       using Base = typename W::template Part<O>;
       using Base::Base;
-      static int8_t dx() { int8_t v = Base::dx(); return InvX ? int8_t(-v) : v; }
-      static int8_t dy() { int8_t v = Base::dy(); return InvY ? int8_t(-v) : v; }
+      [[nodiscard]] static int8_t dx() { int8_t v = Base::dx(); return InvX ? int8_t(-v) : v; }
+      [[nodiscard]] static int8_t dy() { int8_t v = Base::dy(); return InvY ? int8_t(-v) : v; }
       static void consumeX(int8_t n) { Base::consumeX(InvX ? int8_t(-n) : n); }
       static void consumeY(int8_t n) { Base::consumeY(InvY ? int8_t(-n) : n); }
     };

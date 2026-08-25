@@ -20,7 +20,7 @@ namespace oneInput {
       static void onFall() { _t = millis(); _dn = true; _fired = false; O::onFall(); }
       static void onRise() { _dn = false; O::onRise(); }
 
-      static bool available() {
+      [[nodiscard]] static bool available() {
         if (_dn && !_fired && uint32_t(millis() - _t) >= HoldMs) {
           _fired = true;
           O::onHold();

@@ -19,8 +19,8 @@ namespace oneInput {
 
       static void onFall() { _pending = true; }
 
-      static bool available() { return _pending; }
-      static bool take() { bool r = _pending; _pending = false; return r; }
+      [[nodiscard]] static bool available() { return _pending; }
+      [[nodiscard]] static bool take() { bool r = _pending; _pending = false; return r; }
     };
   };
 

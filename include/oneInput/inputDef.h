@@ -13,7 +13,7 @@ namespace oneInput {
     static void onClick()            {}
     static void onHold()             {}
     static void onEdge(uint8_t)      {}  // encoder: current AB pair (bits 0-1)
-    static bool available()          { return false; }
+    [[nodiscard]] static bool available()          { return false; }
   };
 
   /// @brief composes a hardware/filter chain over InputAPI.

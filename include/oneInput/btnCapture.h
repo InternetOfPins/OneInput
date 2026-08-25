@@ -20,9 +20,9 @@ namespace oneInput {
       static void onClick() { _pending = 1; }
       static void onHold()  { _pending = 2; }
 
-      static bool    available() { O::available(); return _pending != 0; }  // triggers Hold::check
-      static uint8_t pending()   { return _pending; }                          // peek without consume
-      static uint8_t take()      { uint8_t r = _pending; _pending = 0; return r; }
+      [[nodiscard]] static bool    available() { O::available(); return _pending != 0; }  // triggers Hold::check
+      [[nodiscard]] static uint8_t pending()   { return _pending; }                          // peek without consume
+      [[nodiscard]] static uint8_t take()      { uint8_t r = _pending; _pending = 0; return r; }
     };
   };
 

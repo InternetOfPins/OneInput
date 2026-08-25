@@ -61,7 +61,7 @@ namespace oneInput {
       inline static bool _fieldMode = false;
 
       static void setFieldMode(bool m) { _fieldMode = m; }
-      static bool fieldMode() { return _fieldMode; }
+      [[nodiscard]] static bool fieldMode() { return _fieldMode; }
 
       static void poll() {
         uint16_t p = O::read();
@@ -78,8 +78,8 @@ namespace oneInput {
         }
       }
 
-      static bool available() { poll(); return _cnt != 0 || O::available(); }
-      static int8_t delta() { return _cnt; }
+      [[nodiscard]] static bool available() { poll(); return _cnt != 0 || O::available(); }
+      [[nodiscard]] static int8_t delta() { return _cnt; }
       static void consume(int8_t n) { _cnt = int8_t(_cnt - n); }
     };
   };
@@ -98,7 +98,7 @@ namespace oneInput {
     struct Part : W::template Part<O> {
       using Base = typename W::template Part<O>;
       using Base::Base;
-      static int8_t delta() { int8_t v = Base::delta(); return Inv ? int8_t(-v) : v; }
+      [[nodiscard]] static int8_t delta() { int8_t v = Base::delta(); return Inv ? int8_t(-v) : v; }
       static void consume(int8_t n) { Base::consume(Inv ? int8_t(-n) : n); }
     };
   };
